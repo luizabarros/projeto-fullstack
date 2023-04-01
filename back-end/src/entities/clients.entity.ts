@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, 
+import { hashSync } from "bcryptjs"
+import { BeforeInsert, BeforeRemove, BeforeUpdate, Column, CreateDateColumn, 
     DeleteDateColumn, Entity,
     OneToMany, PrimaryGeneratedColumn, 
     UpdateDateColumn 
@@ -18,6 +19,23 @@ class Clients {
 
     @Column()
     phone: string
+
+    @Column({ default: true })
+    isActive: boolean
+   
+    @Column({ select: false })
+    password: string
+
+    @BeforeUpdate()
+    @BeforeInsert()
+    hashPassword() {
+        this.password = hashSync(this.password, 10)
+    }
+
+    @BeforeRemove()
+    isActiveChanged() {
+        this.isActive = false
+    }
 
     @CreateDateColumn({ type: "date" })
     createdOn: Date
