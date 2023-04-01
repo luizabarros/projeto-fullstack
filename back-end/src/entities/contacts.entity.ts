@@ -1,12 +1,12 @@
 import { Column, CreateDateColumn, 
     DeleteDateColumn, Entity,
-    OneToMany, PrimaryGeneratedColumn, 
+    ManyToOne, PrimaryGeneratedColumn, 
     UpdateDateColumn 
 } from "typeorm"
-import Contacts from "./contacts.entity"
+import Clients from "./clients.entity"
 
-@Entity("clients")
-class Clients {
+@Entity("contacts")
+class Contacts {
     @PrimaryGeneratedColumn("uuid")
     id: string
     
@@ -28,8 +28,8 @@ class Clients {
     @DeleteDateColumn({ type: "date" })
     deletedAt: Date
 
-    @OneToMany(() => Contacts, contacts => contacts.client)
-    contacts: Contacts[]
+    @ManyToOne(() => Clients, clients => clients.contacts)
+    client: Clients
 }
 
-export default Clients
+export default Contacts
