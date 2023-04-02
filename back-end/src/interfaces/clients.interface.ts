@@ -11,11 +11,11 @@ interface IClientResponse {
     email: string,
     fullName: string,
     phone: string,
-    password: string
-    createdOn: Date
-    updatedAt: Date
-    deletedAt: Date
-    isActive: boolean
+    password: string,
+    createdOn: Date,
+    updatedAt: Date,
+    deletedAt: Date,
+    isActive: boolean,
 }
 
 interface ILoginRequest {

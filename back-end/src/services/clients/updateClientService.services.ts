@@ -1,8 +1,8 @@
-import AppError from '../../errors/AppError'
-import AppDataSource from '../../data-source'
-import { IClientUpdate } from '../../interfaces/clients.interface'
-import { updateUserSerializer } from '../../serializers/clients.serializers'
-import Clients from '../../entities/clients.entity'
+import AppError from "../../errors/AppError"
+import AppDataSource from "../../data-source"
+import Clients from "../../entities/clients.entity"
+import { IClientUpdate } from "../../interfaces/clients.interface"
+import { updateUserSerializer } from "../../serializers/clients.serializers"
 
 const updateClientService = async (dataToUpdate: IClientUpdate, foundClient, reqID: string) => {
     try {
@@ -14,7 +14,7 @@ const updateClientService = async (dataToUpdate: IClientUpdate, foundClient, req
         const clientRepository = AppDataSource.getRepository(Clients)
 
         await clientRepository.update(reqID, {
-            email: validatedDataToUpdate.email || foundClient.jobLeemailvel,
+            email: validatedDataToUpdate.email || foundClient.email,
             fullName: validatedDataToUpdate.fullName || foundClient.fullName,
             phone: validatedDataToUpdate.phone || foundClient.phone,
         })
