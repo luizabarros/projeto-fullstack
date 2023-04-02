@@ -1,42 +1,30 @@
-interface IClientRequest {
-    id: string,
+interface IContactRequest {
     email: string,
     fullName: string,
     phone: string,
     password: string
 }
 
-interface IClientResponse {
+interface IContactResponse {
     id: string,
     email: string,
     fullName: string,
-    phone: string,
     password: string,
+    phone: string,
     createdOn: Date,
     updatedAt: Date,
     deletedAt: Date,
     isActive: boolean,
 }
 
-interface ILoginRequest {
-    email: string,
-    password: string
-}
-
-interface IDecoded {
-    id: string
-}
-
-interface IClientUpdate {
+interface IContactUpdate {
     email?: string,
     fullName?: string,
     phone?: string,
 }
 
 export {
-    IClientRequest,
-    ILoginRequest,
-    IDecoded,
-    IClientResponse,
-    IClientUpdate
+    IContactRequest,
+    IContactResponse,
+    IContactUpdate
 }

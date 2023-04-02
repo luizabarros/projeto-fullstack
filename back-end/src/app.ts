@@ -14,8 +14,8 @@ app.use(errorHandler)
 
 app.use(cors())
 
-app.use("/users", clientsRoutes)
-app.use("/posts", contactsRoutes)
+app.use("/clients", clientsRoutes)
+app.use("/contacts", contactsRoutes)
 
 app.use(express.static("documentation"))
 app.use("./", (req: Request, res: Response) => {
