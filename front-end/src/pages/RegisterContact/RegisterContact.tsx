@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import api from "../../services/api"
-import formSchema from "./formSchema"
 import Starter from "../Starter/Starter"
+import formSchema from "./formSchema"
 
 interface iFormData {
     email: string,
@@ -15,7 +15,7 @@ interface iFormData {
     confirmPassword: string
 
 }
-const PostClient = () => {
+const RegisterContact = () => {
     const [createUser, setCreateUser] = useState<iFormData | null>(null)
     const navigate = useNavigate()
 
@@ -28,20 +28,24 @@ const PostClient = () => {
     const onSubmit = (data: iFormData) => setCreateUser(data)
 
     useEffect(() => {
-        async function postClient() {
+        async function postContact() {
             if (createUser) {
                 try {
-                    const response = await api.post("clients", createUser)
-                    localStorage.setItem("@kenzieCompany:clientID", response.data.id)
+                    const token = localStorage.getItem("@kenzieCompany:token")
+                    const clientID = localStorage.getItem("@kenzieCompany:clientID")
 
+                    await api.post(`contacts/${clientID}`, createUser, {
+                        headers: {
+                            "Authorization": `Basic ${token}` 
+                        }
+                    })
                     notifySuccess()
-                    navigate("/loginCliente")
                 } catch (error) {
                     notifyError()
                 }
             }
         }
-        postClient()
+        postContact()
     }, [createUser])
 
     return (
@@ -106,4 +110,4 @@ const PostClient = () => {
     )
 }
 
-export default PostClient
+export default RegisterContact

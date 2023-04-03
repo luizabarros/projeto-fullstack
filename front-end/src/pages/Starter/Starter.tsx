@@ -41,7 +41,7 @@ const Starter = () => {
 
                             <Menu {...bindMenu(popupState)}>
                                 <MenuItem onClick={popupState.close}>Deletar</MenuItem>
-                                <MenuItem onClick={popupState.close}>Cadastrar</MenuItem>
+                                <MenuItem onClick={() => navigate("/cadastroContato")}>Cadastrar</MenuItem>
                                 <MenuItem onClick={popupState.close}>Login</MenuItem>
                                 <MenuItem onClick={popupState.close}>Todos contatos</MenuItem>
                             </Menu>

@@ -83,7 +83,6 @@ const AllClients = () => {
                         }
                     })
 
-                    console.log(client.data)
                     setFoundClient(client.data)
                 } catch (error) {
                     notifyError()
